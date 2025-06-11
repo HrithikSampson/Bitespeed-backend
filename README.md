@@ -18,3 +18,6 @@ npx typeorm-ts-node-commonjs migration:run -d ./src/data-source.ts
 npx typeorm-ts-node-commonjs migration:revert -d ./src/data-source.ts
 ```
 
+### How to access the docs
+
+Use `/docs` endpoint to check the api docs
