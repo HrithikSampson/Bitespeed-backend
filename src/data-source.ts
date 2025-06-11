@@ -10,7 +10,7 @@ export const AppDataSource = new DataSource({
     port: 5442,
     username: process.env.POSTGRESQL_USERNAME,
     password: process.env.POSTGRESQL_PASSWORD,
-    database: "bitespeed",
+    database: process.env.POSTGRESQL_DATABASE_NAME,
     synchronize: false,
     logging: false,
     entities: [Contact],

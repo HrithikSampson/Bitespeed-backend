@@ -15,6 +15,10 @@ export class ConstraintTable1749620061087 implements MigrationInterface {
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
+        await queryRunner.query(`
+            ALTER TABLE "contact"
+            DROP CONSTRAINT IF EXISTS email_or_phone_not_null;
+        `);
     }
 
 }

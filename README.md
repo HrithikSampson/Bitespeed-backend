@@ -5,3 +5,16 @@ Steps to run this project:
 1. Run `npm i` command
 2. Setup database settings inside `data-source.ts` file
 3. Run `npm start` command
+
+### To run a migration use:
+
+```sh
+npx typeorm-ts-node-commonjs migration:run -d ./src/data-source.ts
+```
+
+### To revert a migration use:
+
+```sh
+npx typeorm-ts-node-commonjs migration:revert -d ./src/data-source.ts
+```
+

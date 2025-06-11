@@ -25,7 +25,7 @@ export class ContactTable1749570914219 implements MigrationInterface {
             CREATE OR REPLACE FUNCTION update_updatedAt_column()
                 RETURNS TRIGGER AS $$
                 BEGIN
-                    NEW.updatedAt := NOW();
+                    NEW."updatedAt" := NOW();
                     RETURN NEW;
                 END;
             $$ LANGUAGE plpgsql;
@@ -34,7 +34,7 @@ export class ContactTable1749570914219 implements MigrationInterface {
         await queryRunner.query(
             `
             CREATE TRIGGER update_contact_updatedAt 
-                BEFORE UPDATE ON Contact 
+                BEFORE UPDATE ON contact 
                 FOR EACH ROW 
                 EXECUTE FUNCTION update_updatedAt_column();
             `
@@ -42,6 +42,10 @@ export class ContactTable1749570914219 implements MigrationInterface {
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
+        await queryRunner.query(`DROP TRIGGER IF EXISTS update_contact_updatedAt ON "contact";`);
+        await queryRunner.query(`DROP FUNCTION IF EXISTS update_updatedAt_column;`);
+        await queryRunner.query(`DROP TABLE IF EXISTS "contact";`);
+        await queryRunner.query(`DROP TYPE IF EXISTS "linkPrecedenceType";`);
     }
 
 }

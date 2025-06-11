@@ -1,0 +1,73 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Identity API",
+    "version": "1.0.0",
+    "description": "API to identify user by email or phone"
+  },
+  "paths": {
+    "/identity": {
+      "post": {
+        "summary": "Identify user by email or phone",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": { 
+                    "type": "string",
+                    "format": "email",
+                    "default": ""
+                },
+                  "phoneNumber": { "type": "number" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Identity response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "contact": {
+                      "type": "object",
+                      "properties": {
+                        "primaryContactId": { "type": "integer" },
+                        "emails": {
+                          "type": "array",
+                          "items": { "type": "string" }
+                        },
+                        "phoneNumbers": {
+                          "type": "array",
+                          "items": { "type": "string" }
+                        },
+                        "secondaryContactIds": {
+                          "type": "array",
+                          "items": { "type": "integer" }
+                        }
+                      }
+                    }
+                  }
+                },
+                "example": {
+                    "contact": {
+                        "primaryContactId": 1,
+                        "emails": ["user@example.com"],
+                        "phoneNumbers": ["1234567890"],
+                        "secondaryContactIds": [2, 3]
+                    }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
