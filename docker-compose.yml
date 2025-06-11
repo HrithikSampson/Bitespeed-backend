@@ -6,10 +6,8 @@ services:
     restart: always
     ports:
       - "5442:5432"
-    environment:
-      POSTGRES_DB: bitespeed
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
+    env_file:
+      - .env.postgres
     volumes:
       - pgdata:/var/lib/postgresql/data
 
@@ -17,7 +15,7 @@ services:
     build: .
     ports:
       - "3000:3000"
-    command: npx typeorm-ts-node-commonjs migration:run -d ./src/data-source.ts && npm start
+    command: sh -c "npx typeorm-ts-node-commonjs migration:run -d ./src/data-source.ts && npm start"
     depends_on:
       - db
     env_file:
