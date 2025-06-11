@@ -41,3 +41,7 @@ POSTGRES_HOST=
 POSTGRES_PORT=5432
 
 ```
+
+### HOSTED URL
+
+https://bitespeed-backend-vgfb.onrender.com/docs/
