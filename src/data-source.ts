@@ -11,9 +11,9 @@ export const AppDataSource = new DataSource({
     username: process.env.POSTGRESQL_USERNAME,
     password: process.env.POSTGRESQL_PASSWORD,
     database: "bitespeed",
-    synchronize: true,
+    synchronize: false,
     logging: false,
     entities: [Contact],
-    migrations: [],
+    migrations: ['src/migration/**/*.ts'],
     subscribers: [],
 })

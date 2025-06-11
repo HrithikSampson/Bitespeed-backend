@@ -5,7 +5,7 @@ import {
   CreateDateColumn,
 } from 'typeorm';
 
-@Entity()
+@Entity("contact")
 export class Contact {
   @PrimaryGeneratedColumn()
   id: number;
@@ -21,16 +21,19 @@ export class Contact {
     enum: ['primary', 'secondary'],
     enumName: 'linkPrecedenceType',
     nullable: true,
-    default: null,
+    default: 'primary',
   })
   linkPrecedence: 'primary' | 'secondary';
 
   @Column({ type: 'int', nullable: true, default: null })
   linkedId: number;
 
-  @CreateDateColumn({ type: 'timestamp', default: () => 'NOW()' })
+  @CreateDateColumn({ type: 'timestamp', default: () => 'NOW()', nullable: false })
   createdAt: Date;
 
-  @Column({ type: 'timestamp', default: () => 'NOW()' })
+  @Column({ type: 'timestamp', default: () => 'NOW()', nullable: false })
   updatedAt: Date;
+
+  @Column({ type: 'timestamp', default: () => 'NOW()', nullable: true })
+  deletedAt: Date;
 }
