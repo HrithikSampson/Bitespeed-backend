@@ -1,4 +1,4 @@
-# Awesome Project Build with TypeORM
+# Bitespeed Backend Assignment
 
 Steps to run this project:
 
